@@ -1,0 +1,19 @@
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+C:/Ruby32-x64/bin/ruby.exe extconf.rb
+creating Makefile
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-dhbl65 sitelibdir\=./.gem.20230706-12212-dhbl65 clean
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-dhbl65 sitelibdir\=./.gem.20230706-12212-dhbl65
+generating cruby-x64-mingw-ucrt.def
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-dhbl65 sitelibdir\=./.gem.20230706-12212-dhbl65 install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20230706-12212-dhbl65/skiptrace/internal
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-dhbl65 sitelibdir\=./.gem.20230706-12212-dhbl65 clean

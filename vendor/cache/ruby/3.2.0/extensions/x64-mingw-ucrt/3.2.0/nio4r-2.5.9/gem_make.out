@@ -1,0 +1,18 @@
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/nio4r-2.5.9/ext/nio4r
+C:/Ruby32-x64/bin/ruby.exe extconf.rb
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-79d7wh sitelibdir\=./.gem.20230706-12212-79d7wh clean
+make: *** Нет правила для сборки цели «clean».  Останов.
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-79d7wh sitelibdir\=./.gem.20230706-12212-79d7wh
+make: Цель «all» не требует выполнения команд.
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-79d7wh sitelibdir\=./.gem.20230706-12212-79d7wh install
+make: Цель «install» не требует выполнения команд.
+
+current directory: D:/instagram/vendor/cache/ruby/3.2.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230706-12212-79d7wh sitelibdir\=./.gem.20230706-12212-79d7wh clean
+make: *** Нет правила для сборки цели «clean».  Останов.

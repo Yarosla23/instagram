@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>ВСЕ ПОС</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+     <%= image_tag post.picture.url,  style: "width: 300px; height: 400px;" if post.picture? %>
+  
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path %>
+    

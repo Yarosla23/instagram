@@ -1,0 +1,41 @@
+<div  class ="col-xl-4 col-md-6 col-sm-8 col-10 "
+style ="margin :auto">
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.text_field :user_id, type: "hidden" , value:
+    current_user.id %>
+    
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :tags, style: "display: block" %>
+    <%= form.text_field :tags, class: "form-control" %>
+  </div>
+  
+  <div>
+    <%= form.label :picture, style: "display: block" %>
+    <%= form.file_field :picture, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary col-12" %>
+  </div>
+<% end %>  
