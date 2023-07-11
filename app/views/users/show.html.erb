@@ -1,14 +1,66 @@
-<h1>Мои посты</h1>
+<p style="color: green"><%= notice %></p>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-     <%= image_tag post.picture.url,  style: "width: 300px; height: 400px;" if post.picture? %>
-  
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+<h1>Профиль</h1>
+
+<h2>Список подписчиков:</h2>
+
+
+<h2>Подписан на:</h2>
+  <% if @user.followed_users.present? %>
+    <% @user.followed_users.each do |followed_user| %>
+      <li><%= followed_user.email %></li>
+    <% end %>
+  <% else %>
+    <li>Нет подписок.</li>
   <% end %>
-</div>
+</ul>
 
 <%= link_to "New post", new_post_path %>
+<div id="posts">
+  <% @posts.each do |post| %>
+  
+<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card">
+        <div class="card-header">
+          <strong><%= post.user.email %> </strong>
+        </div>
+         <%= image_tag post.picture.url,  style: "width:414px; height: 500px;" if post.picture? %> 
+        <div class="card-body">
+          <h5 class="card-title"><%=post.title %></h5>
+          <div class="card-text"><%=post.description %></div>
+          <span class="badge bg-primary"><%= post.tags%></span>
+        </div>
+        <div class="card-footer">
+          
+ <div class="post-likes">
+    <% if user_signed_in? %>
+    <%like = current_user.likes.find_by(post: @post)%>
+    <% if like.nil?%>
+<%= button_to "like", likes_path,  params: {like: {post_id:post.id }}, method: :post, class: 'heart-button'%>
+
+<%else%>
+<div style="display: inline-block;">
+  <%= button_to "Unlike", like_path(like), method: :delete, class: 'heart-button' %>
+  <%= post.likes.count %>
+</div>
+<%end%>
+<%end%>
+
+</div>
+          <button type="button" class="btn btn-secondary"><%= link_to "Комментарии", post, class:"navbar-brand" %></button>
+          <% if user_signed_in? && current_user.id  == post.user.id %>
+          <button type="button" class="btn btn-secondary"> <%= link_to "Редактировать пост", edit_post_path(post), class:"navbar-brand" %></button>
+          <div>
+          <%end%>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <% end %>
+</div>

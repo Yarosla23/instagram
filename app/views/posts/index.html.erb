@@ -1,17 +1,45 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>ВСЕ ПОС</h1>
-
+<h1>Лента</h1>
+<%= link_to "New post", new_post_path %>
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render post %>
-     <%= image_tag post.picture.url,  style: "width: 300px; height: 400px;" if post.picture? %>
   
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card">
+        <div class="card-header">
+          <strong><%= post.user.email %> </strong>
+        </div>
+         <%= image_tag post.picture.url,  style: "width:414px; height: 500px;" if post.picture? %> 
+        <div class="card-body">
+          <h5 class="card-title"><%=post.title %></h5>
+          <div class="card-text"><%=post.description %></div>
+          <span class="badge bg-primary"><%= post.tags%></span>
+        </div>
+        <div class="card-footer">
+            <div class="post-likes">
+                  <%like = current_user.likes.find_by(post: post)%>
+                  <% if like.nil?%>
+                     <%= button_to "like", likes_path,  params: {like: {post_id:post.id }}, method: :post, class: 'heart-button'%>
+                     <%= post.likes.count %>
+                  <%else%>
+                      <%= button_to "Unlike", like_path(like), method: :delete, class: 'heart-button' %>
+                      <%= post.likes.count %>
+                  <%end%>          
+             </div>
+        </div>
+         <button type="button" class="btn btn-secondary"><%= link_to "Комментарии", post, class:"navbar-brand" %></button>
+          <% if user_signed_in? && current_user.id  == post.user.id %>
+              <button type="button" class="btn btn-secondary"> <%= link_to "Редактировать пост", edit_post_path(post), class:"navbar-brand" %></button>
+         <%end%>
+       </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New post", new_post_path %>
-    
+  <% end %>
+</div>

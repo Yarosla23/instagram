@@ -3,12 +3,8 @@ Rails.application.routes.draw do
   get 'follows/destroy'
   devise_for :users
   resources :users do
-    member do
-      post 'follow' => 'follows#create'
-      delete 'unfollow' => 'follows#destroy'
-    end
+    resources :follows, only: [:create, :destroy]
   end
-
   resources :likes, only: [:create, :destroy]
   resources :comments
   resources :posts
