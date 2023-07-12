@@ -9,14 +9,11 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample09">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <li class="nav-item">
+                  <% if user_signed_in? %>
+               <%= button_to("Выйти",destroy_user_session_path, method: :delete,  class:"navbar-brand") %>
+            <%end%>
             </li>
-
-            <% if user_signed_in? %>
-             <%= link_to "Выйти", destroy_user_session_path, class:"navbar-brand"%>
-       <%= button_to("Выйти",destroy_user_session_path, method: :delete) %>
-    <%end%>
             <li class="nav-item">
               <%= link_to "Мои профиль",  user_path(current_user), class:"navbar-brand"%>
             </li>
@@ -25,21 +22,12 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+              <%= link_to "Редактировать аккаунт",  edit_user_registration_path, class:"navbar-brand"%>
             </li>
             
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
+          
           </ul>
-          <form role="search">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-          </form>
+          
         </div>
       </div>
     </nav>

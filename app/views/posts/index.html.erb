@@ -3,7 +3,7 @@
 <h1>Лента</h1>
 <%= link_to "New post", new_post_path %>
 <div id="posts">
-  <% @posts.each do |post| %>
+  <% @posts.reverse_each do |post| %>
   
 <p style="color: green"><%= notice %></p>
 <div class="container">
@@ -11,7 +11,7 @@
     <div class="col-md-4 offset-md-4">
       <div class="card">
         <div class="card-header">
-          <strong><%= post.user.email %> </strong>
+          <strong><%=link_to post.user.email, post.user %> </strong> 
         </div>
          <%= image_tag post.picture.url,  style: "width:414px; height: 500px;" if post.picture? %> 
         <div class="card-body">
@@ -30,7 +30,7 @@
                       <%= post.likes.count %>
                   <%end%>          
              </div>
-        </div>
+               
          <button type="button" class="btn btn-secondary"><%= link_to "Комментарии", post, class:"navbar-brand" %></button>
           <% if user_signed_in? && current_user.id  == post.user.id %>
               <button type="button" class="btn btn-secondary"> <%= link_to "Редактировать пост", edit_post_path(post), class:"navbar-brand" %></button>

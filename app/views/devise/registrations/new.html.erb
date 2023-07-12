@@ -8,18 +8,21 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
 <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <div class="field">
+    <%= f.label :surname %><br />
+    <%= f.text_field :surname, class: "form-control" %>
   </div>
-  
+   <div class="field">
+    <%= f.label :about %><br />
+    <%= f.text_area :about,  class: "form-control" %>
+  </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar, class: "form-control" %>
   </div>
 
   <div class="field">

@@ -1,9 +1,9 @@
 <h1>Список пользователей</h1>
-
 <ul>
-  <% @users.each do |user| %>
-    <li><%= user.email %></li>
-<% unless current_user.followed_users.include?(user) %>
+  <% @users.reverse_each do |user| %>
+  <strong><%=link_to  user.email, user %> </strong> 
+  <br>
+  <% unless current_user.followed_users.include?(user) %>
   <%= button_to "Follow", user_follows_path(user_id: user.id), method: :post %>
 <% else %>
   <%= button_to "Unfollow", user_follow_path(user_id: user.id, id:  user.id), method: :delete %>

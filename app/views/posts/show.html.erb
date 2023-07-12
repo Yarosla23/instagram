@@ -5,7 +5,7 @@
     <div class="col-md-4 offset-md-4">
       <div class="card">
         <div class="card-header">
-          <strong><%= @post.user.email %> </strong>
+          <strong><%=link_to   @post.user.email, @post.user %> </strong>
         </div>
          <%= image_tag @post.picture.url,  style: "width:414px; height: 500px;" if @post.picture? %> 
         <div class="card-body">
@@ -25,9 +25,9 @@
 <%else%>
 <div style="display: inline-block;">
   <%= button_to "Unlike", like_path(like), method: :delete, class: 'heart-button' %>
-  <%= @post.likes.count %>
 </div>
 <%end%>
+   <%= @post.likes.count %>
 <%end%>
 
 </div>
