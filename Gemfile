@@ -9,7 +9,7 @@ gem "rails-pry"
 group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 end
-
+gem 'factory_bot_rails'
 
 gem 'bundler'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -79,4 +79,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'shoulda-matchers', '~> 4.0'
+  gem "factory_bot", "~> 6.2"
+  gem 'faker'
+gem 'rails-controller-testing'
 end
+
+
