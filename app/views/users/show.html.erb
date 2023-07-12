@@ -14,10 +14,18 @@
             <!-- Почта -->
             <p class="profile-email"><%= @user.email%></p>
           </div>
-  <h2>Список подписчиков:</h2>
+
+  <p class="profile-bio"> <%= @user.followers.count%> followers. <%= @user.followed_users.count%> following</p>
+ 
 
 
-<h2>Подписан на:</h2>
+  <h5>Список подписчиков:</h5>
+<ul>
+  <% @user.followers.each do |follower| %>
+    <li><%= follower.email %></li>
+  <% end %>
+</ul>
+<p>Подписан на:</p>
   <% if @user.followed_users.present? %>
     <% @user.followed_users.each do |followed_user| %>
       <li><%= followed_user.email %></li>

@@ -1,0 +1,6 @@
+<h5>Список подписчиков:</h5>
+<ul>
+  <% @user.followers.each do |follower| %>
+    <li><%= follower.email %></li>
+  <% end %>
+</ul>
