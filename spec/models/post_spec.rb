@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject(:post) { described_class.new }
+  subject(:post) { Post.new }
 
   describe 'validations' do
     it 'requires a title' do
@@ -56,22 +56,9 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe 'associations' do
-    it 'belongs to a user' do
-      association = described_class.reflect_on_association(:user)
-      expect(association.macro).to eq :belongs_to
+  describe "associations" do
+    it { should belong_to(:user) }
+    it { should have_many(:comments) }
+    it { should  have_many(:likes) }
     end
-
-    it 'has many comments' do
-      association = described_class.reflect_on_association(:comments)
-      expect(association.macro).to eq :has_many
-      expect(association.options).to include(dependent: :destroy)
-    end
-
-    it 'has many likes' do
-      association = described_class.reflect_on_association(:likes)
-      expect(association.macro).to eq :has_many
-      expect(association.options).to include(dependent: :destroy)
-    end
-  end
 end

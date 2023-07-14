@@ -1,55 +1,77 @@
 <p style="color: green"><%= notice %></p>
-<h1>Профиль <%= @user.email%></h1>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
+
+
+<div class="container",  style = "width: 900px">
+ <div style="outline: 1px solid grey;">
+ <br>
+  <h1>Профиль <%= @user.email%></h1>
+  <br>
+    <div class="row">
+
+      <div class="col-md-6" >
+      <% if @user.avatar?%>
+        <%= image_tag @user.avatar.url,  style: "width:200px; height: 200px;" , class: 'img-fluid rounded-circle float-right'  if @user.avatar?  %> 
+        <%else%>
+         <%= image_tag("no.jpg",  style: "width:200px; height: 200px;" , class: 'img-fluid rounded-circle float-right') %>
+          <% end %>
+      </div>
+
       <div class="col-md-6">
-        <div class="card profile-card">
-          <div class="card-body text-center">
-            <!-- Аватарка -->
-             <%= image_tag @user.avatar.url,  style: "width:200px; height: 200px;" , class: 'rounded-image'   if @user.avatar? %> 
-            <!-- Имя и фамилия -->
-            <h2 class="profile-name"><%= @user.name %><%=  @user.surname%></h2>
-            <!-- Раздел о себе -->
-            <p class="profile-bio"><%= @user.about%>.</p>
-            <!-- Почта -->
-            <p class="profile-email"><%= @user.email%></p>
-          </div>
+      
+        <h1 class="display-6"><%= @user.name %><%=  @user.surname%></h1>
+             <h5 class="lead"><%= @user.about%></h5>
+      
+          <%if current_user == @user %>
+            <%= link_to "Создать новый пост ", new_post_path %>
+          <%else %>  
+          <% if current_user.followed_users.include?(@user) %>
+            <%= button_to "Unfollow", user_follow_path(user_id: @user.id, id:  @user.id), method: :delete %>
+          <% else %>
+            <%= button_to "Follow", user_follows_path(user_id: @user.id), method: :post %>
+          <% end %>
+           <% end %>
+      
+      </div>
+    </div>
+     
+    <br>
 
-  <p class="profile-bio"> <%= @user.followers.count%> followers. <%= @user.followed_users.count%> following</p>
+        <div class="row">
+          <div class="col-md-6">
+           <h5>Список подписчиков:</h5>
+       
+      <% if @user.followers.present? %>
+          <% @user.followers.each do |follower| %>
+          <li><%=link_to  follower.email, follower %></li>
+        <% end %>
+      <% else %>
+           <li>Нет подписчиков.</li>
+      <% end %>
  
-
-
-  <h5>Список подписчиков:</h5>
-<ul>
-  <% @user.followers.each do |follower| %>
-    <li><%= follower.email %></li>
-  <% end %>
-</ul>
-<p>Подписан на:</p>
-  <% if @user.followed_users.present? %>
-    <% @user.followed_users.each do |followed_user| %>
-      <li><%= followed_user.email %></li>
-    <% end %>
-  <% else %>
-    <li>Нет подписок.</li>
-  <% end %>
-</ul>
+          </div>
+          <div class="col-md-6">
+            <h5>Подписан на:</h5>
+      <% if @user.followed_users.present? %>
+        <% @user.followed_users.each do |followed_user| %>
+         <li><%=link_to  followed_user.email, followed_user %></li> 
+       <% end %>
+       <% else %>
+        <li>Нет подписок.</li>
+      <% end %>
+    </ul>
  </ul>
-        </div>
+ <br></div>
+       
+      
       </div>
     </div>
   </div>
+  <br>
 
-  <!-- Подключение Bootstrap скриптов -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ <h2>Ваши посты</h2>
 
-
-<%= link_to "New post", new_post_path %>
-<div id="posts">
   <% @posts.reverse_each   do |post| %>
-  
+
 <p style="color: green"><%= notice %></p>
 <div class="container">
   <div class="row">
@@ -58,7 +80,11 @@
         <div class="card-header">
           <strong><%= post.user.email %> </strong>
         </div>
-         <%= image_tag post.picture.url,  style: "width:414px; height: 500px;" if post.picture? %> 
+         <% if post.picture?%>
+          <%= image_tag post.picture.url,  style: "width:414px; height: 450px;" if post.picture? %> 
+            <%else%>
+         <%= image_tag("post.jpg",  style: "width:400px; height:450px;") %>
+         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%=post.title %></h5>
           <div class="card-text"><%=post.description %></div>
@@ -78,7 +104,6 @@
                   <%end%>          
              </div>
         </div>
-
           <button type="button" class="btn btn-secondary"><%= link_to "Комментарии", post, class:"navbar-brand" %></button>
           <% if user_signed_in? && current_user.id  == post.user.id %>
           <button type="button" class="btn btn-secondary"> <%= link_to "Редактировать пост", edit_post_path(post), class:"navbar-brand" %></button>
@@ -88,7 +113,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </div>
 
   <% end %>

@@ -13,7 +13,11 @@
         <div class="card-header">
           <strong><%=link_to post.user.email, post.user %> </strong> 
         </div>
-         <%= image_tag post.picture.url,  style: "width:414px; height: 500px;" if post.picture? %> 
+        <% if post.picture?%>
+          <%= image_tag post.picture.url,  style: "width:414px; height: 450px;" if post.picture? %> 
+            <%else%>
+         <%= image_tag("post.jpg",  style: "width:400px; height:450px;") %>
+         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%=post.title %></h5>
           <div class="card-text"><%=post.description %></div>
